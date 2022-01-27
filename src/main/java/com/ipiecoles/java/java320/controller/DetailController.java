@@ -31,7 +31,7 @@ public class DetailController {
         return ("detail");
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "")
+    @RequestMapping(method = RequestMethod.GET, value = "", params = "matricule")
     public String searchByMatricule(@RequestParam String matricule, final ModelMap model) {
         model.put("employe", employeService.findMyMatricule(matricule));
         return "detail";

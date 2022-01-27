@@ -4,8 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>Gestion des employés</title>
-    <link rel="stylesheet" href="/static/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/font-awesome.css">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}"/>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js" type="application/javascript"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.bundle.min.js" type="application/javascript"></script>
 </head>
 <body>
 
@@ -103,6 +105,7 @@
                 <div class="col-lg-12">
                     <ul class="list-group" th:each="technicien : ${employe.equipe}">
                         <li class="list-group-item">
+                            <!--/*@thymesVar id="technicien" type="com.ipiecoles.java.java320.model.Technicien"*/-->
                             <a th:href="|employes/${technicien.id}|">
                                 <span th:text="${technicien.nom}">Mélissa</span>
                                 <span th:text="${technicien.prenom}">Rodriguez</span>
