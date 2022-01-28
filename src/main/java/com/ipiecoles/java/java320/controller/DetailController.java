@@ -47,17 +47,6 @@ public class DetailController {
         return "detail";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/technicien", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public RedirectView createUpdateTechnicien(Technicien employe) {
-        Long id = employe.getId();
-        if (id != null) {
-            employe = employeService.updateEmploye(id, employe);
-        } else {
-            employe = employeService.creerEmploye(employe);
-        }
-        return new RedirectView("/employes/" + employe.getId());
-    }
-
     @RequestMapping(method = RequestMethod.POST, value = "/commercial", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String createUpdateCommercial(Commercial employe, final ModelMap model) {
         Long id = employe.getId();
@@ -80,6 +69,23 @@ public class DetailController {
         }
         model.put("employe", employe);
         return "detail";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/technicien", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public RedirectView createUpdateTechnicien(Technicien employe) {
+        Long id = employe.getId();
+        if (id != null) {
+            employe = employeService.updateEmploye(id, employe);
+        } else {
+            employe = employeService.creerEmploye(employe);
+        }
+        return new RedirectView("/employes/" + employe.getId());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/delete")
+    public RedirectView deleteEmploye(@PathVariable (value = "id") Long id) {
+        employeService.deleteEmploye(id);
+        return new RedirectView("/employes?page=0&amp;size=10&amp;sortDirection=ASC&amp;sortProperty=matricule");
     }
 
 }
